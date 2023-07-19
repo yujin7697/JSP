@@ -1,0 +1,22 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<!-- 
+		01 산술연산식 처리 여부 확인
+	 -->
+	 
+	 <%!
+	 	int a = 0;
+	 public int addOne(){
+		 a++;
+		 return a;
+	 }
+	 %>
+</body>
+</html>
