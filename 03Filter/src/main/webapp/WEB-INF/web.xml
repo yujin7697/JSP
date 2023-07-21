@@ -15,14 +15,6 @@
 
 	</welcome-file-list>
 	<filter>
-		<filter-name>C02SecondFilter</filter-name>
-		<filter-class>Filter.C02SecondFilter</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>C02SecondFilter</filter-name>
-		<url-pattern>/login.do</url-pattern>
-	</filter-mapping>
-	<filter>
 		<filter-name>C01FrontFilter</filter-name>
 		<filter-class>Filter.C01FrontFilter</filter-class>
 	</filter>
@@ -30,5 +22,24 @@
 		<filter-name>C01FrontFilter</filter-name>
 		<url-pattern>/login.do</url-pattern>
 	</filter-mapping>
+	
+	<filter>
+		<filter-name>C02SecondFilter</filter-name>
+		<filter-class>Filter.C02SecondFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>C02SecondFilter</filter-name>
+		<url-pattern>/login.do</url-pattern>
+	</filter-mapping>
+	
+	<filter>
+		<filter-name>C03UTF_8_EncodingFilter</filter-name>
+		<filter-class>Filter.C03UTF_8_EncodingFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>C03UTF_8_EncodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 
+	
 </web-app>
