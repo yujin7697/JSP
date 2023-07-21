@@ -22,7 +22,7 @@
 		<filter-name>C01FrontFilter</filter-name>
 		<url-pattern>/login.do</url-pattern>
 	</filter-mapping>
-	
+
 	<filter>
 		<filter-name>C02SecondFilter</filter-name>
 		<filter-class>Filter.C02SecondFilter</filter-class>
@@ -31,7 +31,7 @@
 		<filter-name>C02SecondFilter</filter-name>
 		<url-pattern>/login.do</url-pattern>
 	</filter-mapping>
-	
+
 	<filter>
 		<filter-name>C03UTF_8_EncodingFilter</filter-name>
 		<filter-class>Filter.C03UTF_8_EncodingFilter</filter-class>
@@ -41,5 +41,14 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
-	
+	<filter>
+		<filter-name>C04Permission_Filter</filter-name>
+		<filter-class>Filter.C04Permission_Filter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>C04Permission_Filter</filter-name>
+		<url-pattern>/admin.do</url-pattern>
+		<url-pattern>/user.do</url-pattern>
+	</filter-mapping>
+
 </web-app>
