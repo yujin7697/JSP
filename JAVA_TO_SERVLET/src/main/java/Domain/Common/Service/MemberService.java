@@ -1,7 +1,8 @@
 package Domain.Common.Service;
 
 import java.util.List;
-import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import Domain.Common.Dto.MemberDto;
 
@@ -26,7 +27,7 @@ public interface MemberService {
 	boolean memberDelete(String id, String sid) throws Exception;
 
 	//로그인
-	Map<String, Object> login(String id, String pw) throws Exception;
+	boolean login(HttpServletRequest req) throws Exception;
 
 	//로그아웃
 	boolean logout(String id, String sid);

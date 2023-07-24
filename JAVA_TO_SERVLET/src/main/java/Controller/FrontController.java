@@ -56,6 +56,9 @@ public class FrontController extends HttpServlet {
 		map.put(projectPath+"/login.do", new LoginController() );
 		map.put(projectPath+"/logout.do", new LogoutController() );
 		
+//		main
+		map.put(projectPath+"/main.do",new MainController());
+		
 	}
 	
 	@Override

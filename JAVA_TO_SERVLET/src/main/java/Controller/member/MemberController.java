@@ -11,7 +11,7 @@ import Domain.Common.Service.MemberServiceImpl;
 
 public class MemberController implements SubController{
 	
-	private MemberService service;
+	private MemberService service = MemberServiceImpl.getInstance();
 	
 	
 	public MemberController(){

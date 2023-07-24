@@ -10,7 +10,7 @@ import Domain.Common.Service.LendServiceImpl;
 
 public class LendController implements SubController{
 
-	LendService service;
+	LendService service = LendServiceImpl.getInstance();
 	
 	public LendController(){
 		service = LendServiceImpl.getInstance();

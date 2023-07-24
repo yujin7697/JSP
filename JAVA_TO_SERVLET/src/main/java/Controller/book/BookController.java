@@ -11,7 +11,7 @@ import Domain.Common.Service.BookServiceImpl;
 
 public class BookController implements SubController{
 
-	private BookService service;
+	private BookService service = BookServiceImpl.getInstance();
 	
 	public BookController(){
 		service = BookServiceImpl.getInstance();
