@@ -20,7 +20,7 @@ Role : ${ROLE} <br/>
 		<input placeholder="keyword" />
 		<button class="search_btn">조회</button>
 	</div>
-	<div class="show_block"></div>
+	<div class="show_block" style="height:150px width:150px border:1px solid"></div>
 </div>
 
 <hr>
