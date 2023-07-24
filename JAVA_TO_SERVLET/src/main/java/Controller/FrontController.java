@@ -14,6 +14,16 @@ import Controller.book.BookAddController;
 import Controller.book.BookDeleteController;
 import Controller.book.BookSearchController;
 import Controller.book.BookUpdateController;
+import Controller.lend.LendAddController;
+import Controller.lend.LendDeleteController;
+import Controller.lend.LendSearchController;
+import Controller.lend.LendUpdateController;
+import Controller.member.MemberAddController;
+import Controller.member.MemberDeleteController;
+import Controller.member.MemberSearchController;
+import Controller.member.MemberUpdateController;
+import Controller.member.auth.LoginController;
+import Controller.member.auth.LogoutController;
 
 public class FrontController extends HttpServlet {
 
@@ -33,20 +43,28 @@ public class FrontController extends HttpServlet {
 		map.put(projectPath+"/book/update.do", new BookUpdateController() );
 		map.put(projectPath+"/book/delete.do", new BookDeleteController() );
 //		lend
-		
+		map.put(projectPath+"/lend/search.do", new LendSearchController() );
+		map.put(projectPath+"/lend/add.do", new LendAddController() );
+		map.put(projectPath+"/lend/update.do", new LendUpdateController() );
+		map.put(projectPath+"/lend/delete.do", new LendDeleteController() );
 //		member
-		
+		map.put(projectPath+"/member/search.do", new MemberSearchController() );
+		map.put(projectPath+"/member/add.do", new MemberAddController() );
+		map.put(projectPath+"/member/update.do", new MemberUpdateController() );
+		map.put(projectPath+"/member/delete.do", new MemberDeleteController() );
 //		member.auth
+		map.put(projectPath+"/login.do", new LoginController() );
+		map.put(projectPath+"/logout.do", new LogoutController() );
+		
 	}
 	
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		System.out.println("FrontController's service uri : " + req.getRequestURI());
-//		SubController controller = map.get(request);
-//
-//		Map<String, Object> result = new HashMap();
-//		result = controller.execute(ServiceNo, param);
+
+		SubController controller = map.get(req.getRequestURI());
+		controller.execute(req, resp);
 
 	}
 	
