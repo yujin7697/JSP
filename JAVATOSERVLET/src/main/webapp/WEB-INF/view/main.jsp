@@ -50,7 +50,9 @@ Role : ${ROLE} <br/>
 		//ajax, fetch, promise, axios 선택해서 비동기 요청 
 		//axios cdn 연결 이후에 작업
 		axios.get("http://localhost:8090"+projectPath+"/book/search.do")
-		.then(response=>{console.log("success..",response);})	//성공시 처리 로직
+		.then(response=>{
+			console.log("success..",response.data);
+		})	//성공시 처리 로직
 		.catch(error=>{console.log("fail..");})	//실패시 처리 로직
 		
 	})

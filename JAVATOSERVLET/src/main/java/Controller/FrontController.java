@@ -34,35 +34,39 @@ public class FrontController extends HttpServlet {
 
 	@Override
 	public void init(ServletConfig config) throws ServletException {
-		
+
 		String projectPath = config.getServletContext().getContextPath(); // /JAVA_TO_SERVLET
-		
+
 //		book
-		map.put(projectPath+"/book/search.do", new BookSearchController() );
-		map.put(projectPath+"/book/add.do", new BookAddController() );
-		map.put(projectPath+"/book/update.do", new BookUpdateController() );
-		map.put(projectPath+"/book/delete.do", new BookDeleteController() );
+		map.put(projectPath + "/book/search.do", new BookSearchController());
+		map.put(projectPath + "/book/add.do", new BookAddController());
+		map.put(projectPath + "/book/update.do", new BookUpdateController());
+		map.put(projectPath + "/book/delete.do", new BookDeleteController());
 //		lend
-		map.put(projectPath+"/lend/search.do", new LendSearchController() );
-		map.put(projectPath+"/lend/add.do", new LendAddController() );
-		map.put(projectPath+"/lend/update.do", new LendUpdateController() );
-		map.put(projectPath+"/lend/delete.do", new LendDeleteController() );
+		map.put(projectPath + "/lend/search.do", new LendSearchController());
+		map.put(projectPath + "/lend/add.do", new LendAddController());
+		map.put(projectPath + "/lend/update.do", new LendUpdateController());
+		map.put(projectPath + "/lend/delete.do", new LendDeleteController());
 //		member
-		map.put(projectPath+"/member/search.do", new MemberSearchController() );
-		map.put(projectPath+"/member/add.do", new MemberAddController() );
-		map.put(projectPath+"/member/update.do", new MemberUpdateController() );
-		map.put(projectPath+"/member/delete.do", new MemberDeleteController() );
+		map.put(projectPath + "/member/search.do", new MemberSearchController());
+		map.put(projectPath + "/member/add.do", new MemberAddController());
+		map.put(projectPath + "/member/update.do", new MemberUpdateController());
+		map.put(projectPath + "/member/delete.do", new MemberDeleteController());
 //		member.auth
-		map.put(projectPath+"/login.do", new LoginController() );
-		map.put(projectPath+"/logout.do", new LogoutController() );
-		
+		map.put(projectPath + "/login.do", new LoginController());
+		map.put(projectPath + "/logout.do", new LogoutController());
+
 //		main
-		map.put(projectPath+"/main.do",new MainController());
-		
+		map.put(projectPath + "/main.do", new MainController());
+
 	}
-	
+
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+		req.setCharacterEncoding("UTF-8");
+		resp.setCharacterEncoding("UTF-8");
+		resp.setContentType("text/html; charset=UTF-8");
 
 		System.out.println("FrontController's service uri : " + req.getRequestURI());
 
@@ -70,5 +74,5 @@ public class FrontController extends HttpServlet {
 		controller.execute(req, resp);
 
 	}
-	
+
 }

@@ -2,12 +2,14 @@ package Domain.Common.Service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import Domain.Common.Dto.BookDto;
 
 public interface BookService {
 
 	// 도서조회하기(비회원/회원/사서)
-	List<BookDto> getAllBook() throws Exception;
+	List<BookDto> getAllBook(HttpServletRequest req) throws Exception;
 
 	BookDto getBook(int bookcode) throws Exception;
 

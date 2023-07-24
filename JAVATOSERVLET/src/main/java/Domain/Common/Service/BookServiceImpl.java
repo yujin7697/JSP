@@ -2,6 +2,8 @@ package Domain.Common.Service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import Domain.Common.Dao.BookDao;
 import Domain.Common.Dao.BookDaoImpl;
 import Domain.Common.Dto.BookDto;
@@ -30,10 +32,10 @@ public class BookServiceImpl implements BookService {
 
 	// 도서조회하기(비회원/회원/사서)
 	@Override
-	public List<BookDto> getAllBook() throws Exception {
+	public List<BookDto> getAllBook(HttpServletRequest req) throws Exception {
 		System.out.println("BookService's getAllBook()");
 		List<BookDto> result = (List<BookDto>)dao.select();
-		return dao.select();
+		return result;
 	}
 	
 	@Override
