@@ -47,7 +47,7 @@ public class LoginController implements SubController {
 			boolean isLogin = false;
 			isLogin = service.login(req);
 
-			// 4 View로 전달
+		// 4 View로 전달
 			if (isLogin) {
 //			main.do 이동 - Redirect 
 				resp.sendRedirect(req.getContextPath() + "/main.do");

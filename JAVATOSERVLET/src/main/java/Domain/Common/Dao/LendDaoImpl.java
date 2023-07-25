@@ -1,5 +1,6 @@
 package Domain.Common.Dao;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -106,6 +107,32 @@ public class LendDaoImpl extends ConnectionPool implements LendDao{
 		
 		return result;
 		
+	}
+
+	@Override
+	public List<LendDto> select(String id) throws SQLException {
+		List<LendDto> list = new ArrayList();
+		LendDto dto=null;
+		pstmt=conn.prepareStatement("select * from tbl_lend");
+		pstmt.setString(1, id);
+		rs=pstmt.executeQuery();
+		if(rs!=null)
+		{
+			while(rs.next()) {
+				dto=new LendDto();
+				dto.setLendId(rs.getInt("lendId"));
+				dto.setBookcode(rs.getInt("bookcode"));
+				dto.setId(rs.getString("id"));
+				dto.setLendDate(rs.getDate("lendDate"));
+				dto.setReturnDate(rs.getDate("returnDate"));
+				list.add(dto);
+			}
+			rs.close();
+		}
+		
+		pstmt.close();
+			
+		return list;
 	}
 	
 	

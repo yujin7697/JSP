@@ -1,5 +1,12 @@
 package Domain.Common.Service;
 
+import java.sql.SQLException;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import Domain.Common.Dto.LendDto;
+
 public interface LendService {
 
 	//외부로부터 Service받기
@@ -7,6 +14,8 @@ public interface LendService {
 
 	void setBookService(BookService bookService);
 
-	boolean reqLend(String sid, String userid, int bookcode) throws Exception;
+	boolean reqLend(HttpServletRequest req) throws Exception;
+
+	List<LendDto> getLendList(HttpServletRequest req) throws SQLException;
 
 }
