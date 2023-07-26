@@ -18,4 +18,6 @@ public interface LendService {
 
 	List<LendDto> getLendList(HttpServletRequest req) throws SQLException;
 
+	boolean removeMessage(HttpServletRequest req) throws Exception;
+
 }

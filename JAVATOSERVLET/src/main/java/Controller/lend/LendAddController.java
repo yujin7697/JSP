@@ -1,11 +1,13 @@
 package Controller.lend;
 
 import java.io.PrintWriter;
+import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Controller.SubController;
+import Domain.Common.Dao.ConnectionPool;
 import Domain.Common.Dto.LendDto;
 import Domain.Common.Service.LendService;
 import Domain.Common.Service.LendServiceImpl;
@@ -51,6 +53,13 @@ public class LendAddController  implements SubController{
 			}
 			
 		} catch (Exception e) {
+			try {
+				ConnectionPool.conn.rollback();
+				System.out.println("[Exception] Lend_add 서비스에 대한 rollback임");
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

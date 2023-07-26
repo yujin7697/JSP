@@ -6,10 +6,14 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import Domain.Common.Dao.ConnectionPool;
 import Domain.Common.Dao.LendDao;
 import Domain.Common.Dao.LendDaoImpl;
+import Domain.Common.Dao.LendMessageDao;
+import Domain.Common.Dao.LendMessageDaoImpl;
 import Domain.Common.Dto.BookDto;
 import Domain.Common.Dto.LendDto;
+import Domain.Common.Dto.LendMessageDto;
 import Domain.Common.Dto.MemberDto;
 
 public class LendServiceImpl implements LendService {
@@ -17,7 +21,7 @@ public class LendServiceImpl implements LendService {
 	private MemberService memService;
 	private BookService bookService;
 	private LendDao dao;
-	
+	private LendMessageDao msgDao;
 	
 	//싱글톤
 	private static LendService instance;
@@ -32,6 +36,7 @@ public class LendServiceImpl implements LendService {
 		dao=LendDaoImpl.getInstance();
 		memService = MemberServiceImpl.getInstance();
 		bookService = BookServiceImpl.getInstance();
+		msgDao=LendMessageDaoImpl.getInstance();
 	}
 	
 	//외부로부터 Service받기
@@ -73,12 +78,22 @@ public class LendServiceImpl implements LendService {
 				LendDto ldto=dao.select(bookcode);
 				 		
 				if(ldto==null) {
+					
+					//commit - false
+					ConnectionPool.conn.setAutoCommit(false);
 					//도서가 대여가능한 상태라면
 					dao.insert(new LendDto(0,bookcode,userid,null,null) );
+					//메시지 저장
+					msgDao.insert(new LendMessageDto(0,userid,bookcode + " 도서대여 완료"));
+					//commit true
+					ConnectionPool.conn.commit();
+					
+					
 					System.out.println("[INFO] 도서대여 완료되었습니다.");
 					req.setAttribute("msg", "[INFO] 도서대여 완료되었습니다.");
 					return true;
 				}
+				
 				System.out.println("[WARN] 요청한 도서는 대여중입니다.");	
 				req.setAttribute("msg", "[WARN] 요청한 도서는 대여중입니다.");
 				return false;
@@ -102,6 +117,17 @@ public class LendServiceImpl implements LendService {
 		String id = (String)session.getAttribute("ID");
 		List<LendDto> list = dao.select(id);
 		return null;
+	}
+
+	@Override
+	public boolean removeMessage(HttpServletRequest req) throws Exception{
+//		user메시지 테이블 삭제
+		int cnt = msgDao.delete(req.getParameter("userid"));
+//		session 의 alarm 관련된 속성제거
+		HttpSession session = req.getSession();
+		session.removeAttribute("alarm_cnt");
+		session.removeAttribute("alarm_list");
+		return cnt>0;
 	}
 	
 	

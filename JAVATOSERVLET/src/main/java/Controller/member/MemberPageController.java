@@ -14,7 +14,7 @@ public class MemberPageController implements SubController {
 		try {
 			HttpSession session = req.getSession();
 			String role = (String)session.getAttribute("ROLE");
-			if(role.equals("Role_User")){
+			if(role.equals("ROLE_USER")){
 				req.getRequestDispatcher("/WEB-INF/view/member/user.jsp").forward(req, resp);
 			}else if(role.equals("ROLE_MEMBER")) {
 				req.getRequestDispatcher("/WEB-INF/view/member/member.jsp").forward(req, resp);

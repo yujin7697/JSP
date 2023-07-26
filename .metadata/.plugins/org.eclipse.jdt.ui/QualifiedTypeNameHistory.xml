@@ -2,6 +2,10 @@
 <qualifiedTypeNameHistroy>
     <fullyQualifiedTypeName name="javax.servlet.Filter"/>
     <fullyQualifiedTypeName name="Type.Role"/>
-    <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
     <fullyQualifiedTypeName name="com.fasterxml.jackson.databind.ObjectMapper"/>
+    <fullyQualifiedTypeName name="PJ_JAVA_TEAM05-master.5조(박영민,김경민,김정신,장유진).src.Controller.SubController"/>
+    <fullyQualifiedTypeName name="Controller.SubController"/>
+    <fullyQualifiedTypeName name="Domain.Common.Service.BoardServiceImpl"/>
+    <fullyQualifiedTypeName name="Domain.Common.Service.BoardService"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
 </qualifiedTypeNameHistroy>

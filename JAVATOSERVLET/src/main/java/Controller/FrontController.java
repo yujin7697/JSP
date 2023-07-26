@@ -50,6 +50,9 @@ public class FrontController extends HttpServlet {
 		map.put(projectPath+"/lend/update.do", new LendUpdateController());
 		map.put(projectPath+"/lend/delete.do", new LendDeleteController());		
 		
+		//lendMsg
+		map.put(projectPath+"/lend/messageRemove.do", new LendMessageRemoveController());		
+		
 		//member
 		map.put(projectPath+"/member/search.do", new MemberSearchController());
 		map.put(projectPath+"/member/add.do", new MemberAddController());
@@ -69,11 +72,7 @@ public class FrontController extends HttpServlet {
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-        req.setCharacterEncoding("UTF-8");
-        resp.setCharacterEncoding("UTF-8");
-        resp.setContentType("text/html; charset=UTF-8");
-        
+
 		System.out.println("FrontController's service Uri : " + req.getRequestURI());// 
 		
 		SubController controller = map.get(req.getRequestURI());

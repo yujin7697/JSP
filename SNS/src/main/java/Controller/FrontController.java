@@ -10,10 +10,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Controller.board.BoardAddController;
+import Controller.board.BoardDeleteController;
 import Controller.board.BoardSearchController;
+import Controller.board.BoardUpdateController;
+import Controller.member.MemberAddController;
+import Controller.member.MemberDeleteController;
+import Controller.member.MemberSearchController;
+import Controller.member.MemberUpdateController;
+import Controller.member.auth.LoginController;
+import Controller.member.auth.LogoutController;
 
-public class FrontController extends HttpServlet{
-	
+public class FrontController extends HttpServlet {
+
 	private Map<String, SubController> map = new HashMap();
 
 	@Override
@@ -21,15 +30,30 @@ public class FrontController extends HttpServlet{
 		String projectPath = config.getServletContext().getContextPath();
 //		board
 		map.put(projectPath + "/board/search.do", new BoardSearchController());
-		
+		map.put(projectPath + "/board/delete.do", new BoardDeleteController());
+		map.put(projectPath + "/board/add.do", new BoardAddController());
+		map.put(projectPath + "/board/update.do", new BoardUpdateController());
+
+//		member
+		map.put(projectPath + "/member/search.do", new MemberSearchController());
+		map.put(projectPath + "/member/delete.do", new MemberDeleteController());
+		map.put(projectPath + "/member/add.do", new MemberAddController());
+		map.put(projectPath + "/member/update.do", new MemberUpdateController());
+
+//		member.auth
+		map.put(projectPath + "/member/login.do", new LoginController());
+		map.put(projectPath + "/member/logout.do", new LogoutController());
+
+//		main
+		map.put(projectPath + "/member/update.do", new MainController());
 	}
-	
+
 	@Override
-	protected void service(HttpServletRequest arg0, HttpServletResponse arg1) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		super.service(arg0, arg1);
+	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		System.out.println("FrontController's service Uri : " + req.getRequestURI());//
+
+		SubController controller = map.get(req.getRequestURI());
+		controller.execute(req, resp);
 	}
-	
-	
 
 }
