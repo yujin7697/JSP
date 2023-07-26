@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import Domain.Common.Dao.MemberDao;
 import Domain.Common.Dao.MemberDaoImpl;
 import Domain.Common.Dto.MemberDto;
@@ -29,7 +32,7 @@ public class MemberServiceImpl implements MemberService {
 		sessionMap = new HashMap();
 	}
 
-//	È¸¿ø °¡ÀÔÇÏ±â
+//	È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 	@Override
 	public boolean Join(MemberDto dto) throws Exception {
 		int result = dao.insert(dto);
@@ -38,7 +41,7 @@ public class MemberServiceImpl implements MemberService {
 		return false;
 	}
 
-//	È¸¿ø Á¶È¸(ÀüÃ¼) - °ü¸®ÀÚ
+//	È¸ï¿½ï¿½ ï¿½ï¿½È¸(ï¿½ï¿½Ã¼) - ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	@Override
 	public List<MemberDto> memberSearch(String role) throws Exception {
 		if (role.equals("MASTER"))
@@ -46,7 +49,7 @@ public class MemberServiceImpl implements MemberService {
 		return null;
 	}
 
-//	È¸¿ø »èÁ¦ÇÏ±â
+//	È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
 	@Override
 	public boolean memberDelete(String id, String role) throws Exception {
 		Session session = (Session) sessionMap.get(role);
@@ -59,34 +62,33 @@ public class MemberServiceImpl implements MemberService {
 
 	}
 
-//	·Î±×ÀÎ
+//	ï¿½Î±ï¿½ï¿½ï¿½
 	@Override
-	public Map<String, Object> login(String id, String pw) throws Exception {
-//		1. id/pw Ã¼Å© -> Dao Àü´Ş¹ŞÀº id¿Í ÀÏÄ¡ÇÏ´Â Á¤º¸¸¦ °¡Á®¿Í¼­ pwÀÏÄ¡ È®ÀÎ
+	public boolean login(HttpServletRequest req) throws Exception {
+		
+		String id = (String)req.getParameter("id");
+		String pw = (String)req.getParameter("pw");
+		
+//		1 ID/PW ì²´í¬ ->Dao ì „ë‹¬ë°›ì€ idì™€ ì¼ì¹˜í•˜ëŠ” ì •ë³´ë¥¼ ê°€ì ¸ì™€ì„œ Pwì¼ì¹˜ í™•ì¸
 		MemberDto dto = (MemberDto) dao.select(id, pw);
 		if (dto == null) {
-			System.out.println("[ERROR");
-			return null;
+			req.setAttribute("msg", "[ERROR] Login Fail... ì•„ì´ë””ê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤");
+			return false;
 		}
 
 		if (!pw.equals(dto.getPw())) {
-			System.out.println("[ERROR]");
-			return null;
+			req.setAttribute("msg", "[ERROR] Login Fail... íŒ¨ìŠ¤ì›Œë“œê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤");
+			return false;
 		}
-
-//		2. ÇØ´ç »ç¿ëÀÚ¿¡ ´ëÇÑ Á¤º¸¸¦(Session)À» MemberService¿¡ ÀúÀå
-		String role = UUID.randomUUID().toString();
-		Session session = new Session(dto.getId(), dto.getPw(), dto.getRole());
-		sessionMap.put(role, session);
-//		3. ¼¼¼Ç¿¡ ´ëÇÑ Á¤º¸¸¦ Å¬¶óÀÌ¾ğÆ®°¡ Á¢±ÙÇÒ ¼ö ÀÖµµ·Ï ÇÏ´Â ¼¼¼Ç ±¸º° id(Session Cookie)Àü´Ş
-		Map<String, Object> result = new HashMap();
-		result.put("id", id);
-		result.put("pw", pw);
-		result.put("role", role);
-		return result;
+		
+		HttpSession session = req.getSession();
+		session.setAttribute("ID", id);
+		session.setAttribute("ROLE", dto.getRole());
+		
+		return true;
 	}
 
-//	·Î±×¾Æ¿ô
+//	ï¿½Î±×¾Æ¿ï¿½
 	@Override
 	public Boolean logout(String id, String pw, String role) {
 
@@ -100,7 +102,7 @@ public class MemberServiceImpl implements MemberService {
 
 	}
 
-//	¿ªÇÒ ¹İÈ¯ ÇÔ¼ö(È¸¿øÀÎÁö °ü¸®ÀÚÀÎÁö)
+//	ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¯ ï¿½Ô¼ï¿½(È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
 	@Override
 	public String getRole(String role) {
 		Session session = (Session) sessionMap.get(role);

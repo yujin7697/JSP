@@ -1,28 +1,29 @@
 package Domain.Common.Service;
 
 import java.util.List;
-import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import Domain.Common.Dto.MemberDto;
 
 public interface MemberService {
 
-	//	È¸¿ø °¡ÀÔÇÏ±â
+//	íšŒì›ê°€ì…
 	boolean Join(MemberDto dto) throws Exception;
 
-	//	È¸¿ø Á¶È¸(ÀüÃ¼) - °ü¸®ÀÚ
+//	íšŒì›ì¡°íšŒ(ì „ì²´) - ê´€ë¦¬ì
 	List<MemberDto> memberSearch(String role) throws Exception;
 
-	//	È¸¿ø »èÁ¦ÇÏ±â
+//	íšŒì›ì‚­ì œ
 	boolean memberDelete(String id, String role) throws Exception;
 
-	//	·Î±×ÀÎ
-	Map<String, Object> login(String id, String pw) throws Exception;
+//	ë¡œê·¸ì¸
+	boolean login(HttpServletRequest req) throws Exception;
 
-	//	·Î±×¾Æ¿ô
-	Boolean logout(String id, String pw, String role);
+//	ë¡œê·¸ì•„ì›ƒ
+	boolean logout(String id, String pw, String role);
 
-	//	¿ªÇÒ ¹İÈ¯ ÇÔ¼ö(È¸¿øÀÎÁö °ü¸®ÀÚÀÎÁö)
+//	ì—­í• ë°˜í™˜í•¨ìˆ˜
 	String getRole(String role);
 
 }
