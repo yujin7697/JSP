@@ -8,7 +8,7 @@
     <welcome-file>default.html</welcome-file>
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
-    <welcome-file>/WEB-INF/view/member/auth/login.jsp</welcome-file>
+    <welcome-file>/WEB-INF/view/main.jsp</welcome-file>
   </welcome-file-list>
   <servlet>
     <servlet-name>FrontController</servlet-name>

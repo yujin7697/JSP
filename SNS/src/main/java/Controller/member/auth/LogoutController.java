@@ -19,7 +19,7 @@ public class LogoutController implements SubController{
 		try {
 			HttpSession session = req.getSession();
 			session.invalidate();
-			resp.sendRedirect(req.getContextPath()+"/login.do");
+			resp.sendRedirect(req.getContextPath()+"/login.jsp");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

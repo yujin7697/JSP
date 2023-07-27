@@ -19,6 +19,7 @@ public class LoginController implements SubController{
 		
 		if(req.getMethod().equals("GET")) {
 			try {
+				System.out.println("get");
 				req.getRequestDispatcher("/WEB-INF/view/member/auth/login.jsp").forward(req, resp);
 			} catch (ServletException e) {
 				// TODO Auto-generated catch block
@@ -27,13 +28,12 @@ public class LoginController implements SubController{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			return ;
 		}
 		
 //		1 파라미터 추출
 		String id = (String)req.getParameter("id");
 		String pw = (String)req.getParameter("pw");
-		
+		System.out.println("LoginController paramtes : " + id + " " + pw);
 //		2 입력값 검증
 		try {
 			if (id.isEmpty() || pw.isEmpty()) {

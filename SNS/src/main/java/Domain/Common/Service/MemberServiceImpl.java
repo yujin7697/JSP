@@ -72,11 +72,13 @@ public class MemberServiceImpl implements MemberService {
 //		1 ID/PW 체크 ->Dao 전달받은 id와 일치하는 정보를 가져와서 Pw일치 확인
 		MemberDto dto = (MemberDto) dao.select(id, pw);
 		if (dto == null) {
+			System.out.println("아이디 안됨");
 			req.setAttribute("msg", "[ERROR] Login Fail... 아이디가 일치하지 않습니다");
 			return false;
 		}
 
 		if (!pw.equals(dto.getPw())) {
+			System.out.println("비밀번호 안됨");
 			req.setAttribute("msg", "[ERROR] Login Fail... 패스워드가 일치하지 않습니다");
 			return false;
 		}

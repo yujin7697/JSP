@@ -19,7 +19,7 @@ public class MemberDaoImpl extends ConnectionPool implements MemberDao{
 		return instance;
 	}
 	
-	//id °ÔÅÍ
+	//id ï¿½ï¿½ï¿½ï¿½
 	@Override
 	public String getId() {
         return id;
@@ -28,12 +28,12 @@ public class MemberDaoImpl extends ConnectionPool implements MemberDao{
 	public MemberDaoImpl(){
 
 	}
-	//¾µÁö ¾È¾µÁö ¸ð¸¥´Ù. °í¹ÎÁß...
-//	È¸¿ø id/pw ¼öÁ¤
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½È¾ï¿½ï¿½ï¿½ ï¿½ð¸¥´ï¿½. ï¿½ï¿½ï¿½ï¿½ï¿½...
+//	È¸ï¿½ï¿½ id/pw ï¿½ï¿½ï¿½ï¿½
 //	public int update(MemberDto dto) throws Exception{
 //		pstmt = conn.prepareStatement("update tbl_member set id=?,pw=?");
 	
-	//¾ÆÀÌµð¿¡ µû¶ó ºñ¹ø¹Ù²Ù´Â Äõ¸®¹®
+	//ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ù²Ù´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 //		pstmt = conn.prepareStatement("update tbl_member set pw=? where id=?");
 //		pstmt.setString(1, dto.getId());
 //		pstmt.setString(2, dto.getPw());
@@ -41,7 +41,7 @@ public class MemberDaoImpl extends ConnectionPool implements MemberDao{
 //		return pstmt.executeUpdate();
 //	}
 	
-//	È¸¿ø id/pw ÀúÀå
+//	È¸ï¿½ï¿½ id/pw ï¿½ï¿½ï¿½ï¿½
 	@Override
 	public int insert(MemberDto dto) throws Exception{
 		pstmt = conn.prepareStatement("insert into tbl_member values(?,?,'MEMBER')");
@@ -50,7 +50,7 @@ public class MemberDaoImpl extends ConnectionPool implements MemberDao{
 		
 		return pstmt.executeUpdate();
 	}
-// 	È¸¿ø id/pw Á¶È¸
+// 	È¸ï¿½ï¿½ id/pw ï¿½ï¿½È¸
 	@Override
 	public List<MemberDto> select(String id, String pw) throws Exception{
 		List<MemberDto> list = new ArrayList();
@@ -62,12 +62,15 @@ public class MemberDaoImpl extends ConnectionPool implements MemberDao{
 				dto = new MemberDto();
 				dto.setId(rs.getString("id"));
 				dto.setPw(rs.getString("pw"));
+				dto.setRole(rs.getString("role"));
 				list.add(dto);
 			}
+			rs.close();
 		}
+		pstmt.close();
 		return list;
 	}
-//	È¸¿ø id/pw »èÁ¦
+//	È¸ï¿½ï¿½ id/pw ï¿½ï¿½ï¿½ï¿½
 	@Override
 	public int delete(String id) throws Exception{
 		
