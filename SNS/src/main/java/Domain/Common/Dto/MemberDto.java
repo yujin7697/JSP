@@ -5,28 +5,24 @@ public class MemberDto {
 	private String pw;
 	private String role;
 
-//	±âº» »ý¼ºÀÚ
+//	ï¿½âº» ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public MemberDto() {
 	}
 
-//	¸ðµç ÀÎÀÚ¸¦ ¹Þ´Â »ý¼ºÀÚ
+// 	roleï¿½ï¿½ï¿½Ú¸ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public MemberDto(String id, String pw) {
+		this.id = id;
+		this.pw = pw;
+	}
+//	ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¸ï¿½ ï¿½Þ´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	public MemberDto(String id, String pw, String role) {
 		this.id = id;
 		this.pw = pw;
 		this.role = role;
 	}
 
-// 	roleÀÎÀÚ¸¦ »« »ý¼ºÀÚ
-	public MemberDto(String id, String pw) {
-		this.id = id;
-		this.pw = pw;
-	}
 
-//	toString ÀçÁ¤ÀÇ
-	@Override
-	public String toString() {
-		return "MemberDto [id=" + id + ", pw=" + pw + ", role=" + role + "]";
-	}
+//	toString ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 //	getter and setter
 	public String getId() {
@@ -51,5 +47,9 @@ public class MemberDto {
 
 	public void setRole(String role) {
 		this.role = role;
+	}
+	@Override
+	public String toString() {
+		return "MemberDto [id=" + id + ", pw=" + pw + ", role=" + role + "]";
 	}
 }

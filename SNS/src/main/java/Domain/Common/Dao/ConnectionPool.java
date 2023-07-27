@@ -10,19 +10,20 @@ public abstract class ConnectionPool {
 	protected String pw;
 	protected String url;
 
-	protected static Connection conn;
+	public static Connection conn;
 	protected PreparedStatement pstmt;
 	protected ResultSet rs;
 
 	ConnectionPool() {
 		id = "root";
 		pw = "1234";
-		url = "jdbc:mysql://localhost:3306/∞‘Ω√∆«";
+		url = "jdbc:mysql://localhost:3306/Í≤åÏãúÌåê";
 
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
 			if(conn==null)
+				Class.forName("com.mysql.cj.jdbc.Driver");
 				conn = DriverManager.getConnection(url, id, pw);
+				System.out.println("connectionpool~~~~~~~~~~~~~~");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
