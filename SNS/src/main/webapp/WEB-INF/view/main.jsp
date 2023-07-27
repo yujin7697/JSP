@@ -12,10 +12,7 @@
 ID : ${ID} <br/>
 ROLE : ${ROLE}<br/>
 <hr>
-<hr/>
-<c:if test="${empty ROLE}">
-	<a href=<c:url value="/login.do" /> >LOGIN</a></br>
-</c:if>
+
 <c:if test="${not empty ROLE}">
 	<a href=<c:url value="/logout.do" /> >LOGOUT</a></br>
 </c:if>
@@ -30,6 +27,7 @@ EL's Project ServerPort :${pageContext.request.serverPort}<br/>
 <%
 	int port = request.getServerPort();
 %>
+
 
 </body>
 </html>
