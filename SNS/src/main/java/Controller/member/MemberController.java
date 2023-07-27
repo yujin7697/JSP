@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import Controller.SubController;
 import Domain.Common.Dto.MemberDto;
 import Domain.Common.Service.MemberService;
@@ -11,6 +14,11 @@ import Domain.Common.Service.MemberServiceImpl;
 
 public class MemberController implements SubController{
 
+	@Override
+	public void execute(HttpServletRequest req, HttpServletResponse resp) {
+		// TODO Auto-generated method stub
+		
+	}
 	private MemberService service;
 
 	public MemberController() {
@@ -96,7 +104,7 @@ public class MemberController implements SubController{
 			Map<String, Object> result = new HashMap();
 			String role = null;
 			try {
-				result = service.login(id, pw);
+				result = service.login(id,pw);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -128,4 +136,5 @@ public class MemberController implements SubController{
 
 		return null;
 	}
+
 }

@@ -1,7 +1,10 @@
 package Controller.member.auth;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import Controller.SubController;
 import Domain.Common.Service.MemberService;
@@ -13,6 +16,14 @@ public class LogoutController implements SubController{
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 		System.out.println("LogoutController임");
+		try {
+			HttpSession session = req.getSession();
+			session.invalidate();
+			resp.sendRedirect(req.getContextPath()+"/login.do");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 

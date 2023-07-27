@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import Controller.SubController;
 import Domain.Common.Dto.BoardDto;
 import Domain.Common.Service.BoardService;
@@ -119,6 +122,12 @@ public class BoardController implements SubController{
 		}
 		return null;
 
+	}
+
+	@Override
+	public void execute(HttpServletRequest req, HttpServletResponse resp) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

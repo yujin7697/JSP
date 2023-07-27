@@ -15,12 +15,12 @@ import Domain.Common.Service.Auth.Session;
 
 public class MemberServiceImpl implements MemberService {
 
+//	세션 정보 저장
 	public Map<String, Object> sessionMap;
-
 	private MemberDao dao;
 
+//	싱글톤
 	private static MemberServiceImpl instance;
-
 	public static MemberServiceImpl getInstance() {
 		if (instance == null)
 			instance = new MemberServiceImpl();
@@ -62,7 +62,7 @@ public class MemberServiceImpl implements MemberService {
 
 	}
 
-//	�α���
+//	로그인
 	@Override
 	public boolean login(HttpServletRequest req) throws Exception {
 		
@@ -88,9 +88,9 @@ public class MemberServiceImpl implements MemberService {
 		return true;
 	}
 
-//	�α׾ƿ�
+//	로그아웃
 	@Override
-	public Boolean logout(String id, String pw, String role) {
+	public boolean logout(String id, String pw, String role) {
 
 		Session session = (Session) sessionMap.get(role);
 		if (id == null || pw == null) {
@@ -98,8 +98,7 @@ public class MemberServiceImpl implements MemberService {
 			return false;
 		}
 		sessionMap.remove(role);
-		return null;
-
+		return true;
 	}
 
 //	���� ��ȯ �Լ�(ȸ������ ����������)

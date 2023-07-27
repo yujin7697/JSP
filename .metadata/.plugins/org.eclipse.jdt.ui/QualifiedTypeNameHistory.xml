@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="javax.servlet.Filter"/>
     <fullyQualifiedTypeName name="Type.Role"/>
     <fullyQualifiedTypeName name="com.fasterxml.jackson.databind.ObjectMapper"/>
     <fullyQualifiedTypeName name="PJ_JAVA_TEAM05-master.5조(박영민,김경민,김정신,장유진).src.Controller.SubController"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
+    <fullyQualifiedTypeName name="javax.servlet.Filter"/>
+    <fullyQualifiedTypeName name="Domain.Common.Dao.ConnectionPool"/>
+    <fullyQualifiedTypeName name="Domain.Common.Dao.LendMessageDaoImpl"/>
+    <fullyQualifiedTypeName name="Domain.Common.Service.LendServiceImpl"/>
     <fullyQualifiedTypeName name="Controller.SubController"/>
     <fullyQualifiedTypeName name="Domain.Common.Service.BoardServiceImpl"/>
     <fullyQualifiedTypeName name="Domain.Common.Service.BoardService"/>
-    <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
+    <fullyQualifiedTypeName name="Domain.Common.Service.MemberServiceImpl"/>
+    <fullyQualifiedTypeName name="Domain.Common.Service.MemberService"/>
 </qualifiedTypeNameHistroy>
