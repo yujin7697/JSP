@@ -17,4 +17,6 @@ public interface MemberDao {
 
 	int delete(String id) throws Exception;
 
+	MemberDto select_one(String id, String pw) throws Exception;
+
 }

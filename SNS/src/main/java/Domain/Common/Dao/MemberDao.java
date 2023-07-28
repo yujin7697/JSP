@@ -12,7 +12,7 @@ public interface MemberDao {
 	//	ȸ�� id/pw ����
 	int insert(MemberDto dto) throws Exception;
 
-	MemberDto select(String id) throws Exception;
+	MemberDto select_one(String id,String pw) throws Exception;
 	// 	ȸ�� id/pw ��ȸ
 	List<MemberDto> select(String id, String pw) throws Exception;
 

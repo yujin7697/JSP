@@ -53,8 +53,8 @@ public class LoginController  implements SubController{
 			}
 			//3 서비스 실행
 			boolean isLogin=false;
-		
 			isLogin=service.login(req);
+			System.out.println("isLogin 실행: " + isLogin );
 		
 		
 			//4 View로 전달 

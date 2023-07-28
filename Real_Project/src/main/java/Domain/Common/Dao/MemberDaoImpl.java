@@ -3,7 +3,6 @@ package Domain.Common.Dao;
 import java.util.ArrayList;
 import java.util.List;
 
- 
 import Domain.Common.Dto.MemberDto;
 
 public class MemberDaoImpl extends ConnectionPool implements MemberDao{
@@ -61,12 +60,13 @@ public class MemberDaoImpl extends ConnectionPool implements MemberDao{
 		return list;
 	}
 	@Override
-	public MemberDto select(String id) throws Exception{
+	public MemberDto select_one(String id,String pw) throws Exception{
 		
 		MemberDto dto=null;
-		pstmt=conn.prepareStatement("select * from tbl_member where id=?");
+		boolean isLogin = false;
+		pstmt=conn.prepareStatement("select * from tbl_member where id=? and pw=?");
 		pstmt.setString(1, id);
-		
+		pstmt.setString(2, pw);
 		rs=pstmt.executeQuery();
 		
 		try {
@@ -76,8 +76,9 @@ public class MemberDaoImpl extends ConnectionPool implements MemberDao{
 			dto=new MemberDto();
 			dto.setId(rs.getString("id"));
 			dto.setPw(rs.getString("pw"));
-			dto.setUsername(rs.getString("username"));
+//			dto.setUsername(rs.getString("username"));
 			dto.setRole(rs.getString("role"));	
+			
 			rs.close();
 		}
 		}catch(Exception e) {
@@ -119,6 +120,12 @@ public class MemberDaoImpl extends ConnectionPool implements MemberDao{
 		
 		return result;
 		
+	}
+
+	@Override
+	public MemberDto select(String id) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	
