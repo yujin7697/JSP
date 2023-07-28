@@ -48,7 +48,7 @@ public class JoinController extends HttpServlet implements SubController {
             int result = memberDao.insert(newMember);
             if (result > 0) {
                 req.setAttribute("msg", "회원 가입이 완료되었습니다.");
-                req.getRequestDispatcher("login.jsp").forward(req, resp);
+                req.getRequestDispatcher("/WEB-INF/view/member/auth/login.jsp").forward(req, resp);
             } else {
                 req.setAttribute("msg", "회원 가입에 실패했습니다.");
                 req.getRequestDispatcher("join.jsp").forward(req, resp);

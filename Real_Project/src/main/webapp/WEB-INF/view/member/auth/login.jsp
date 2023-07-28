@@ -11,7 +11,7 @@
 <body>
 
 <h1>LOGIN</h1>
-<form action="" method="post">
+<form action="login.do" method="post">
 	ID : <input name="id"><br>
 	PW : <input name="pw" type="password"><br>
 	<input type=submit value="로그인">
