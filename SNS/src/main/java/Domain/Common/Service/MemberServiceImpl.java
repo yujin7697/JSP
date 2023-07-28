@@ -62,33 +62,33 @@ public class MemberServiceImpl implements MemberService {
 
 	}
 
-//	로그인
-	@Override
-	public boolean login(HttpServletRequest req) throws Exception {
-		
-		String id = (String)req.getParameter("id");
-		String pw = (String)req.getParameter("pw");
-		
-//		1 ID/PW 체크 ->Dao 전달받은 id와 일치하는 정보를 가져와서 Pw일치 확인
-		MemberDto dto = (MemberDto) dao.select(id, pw);
-		if (dto == null) {
-			System.out.println("아이디 안됨");
-			req.setAttribute("msg", "[ERROR] Login Fail... 아이디가 일치하지 않습니다");
-			return false;
+	//로그인
+		@Override
+		public boolean login(HttpServletRequest req) throws Exception{
+			
+			String id = (String) req.getParameter("id");
+			String pw = (String) req.getParameter("pw");
+			//1 ID/PW 체크 ->Dao 전달받은 id와 일치하는 정보를 가져와서 Pw일치 확인
+			MemberDto dbDto = dao.select(id);
+			if(dbDto==null) {
+				System.out.println("[ERROR] Login Fail... 아이디가 일치하지 않습니다");
+				req.setAttribute("msg", "[ERROR] Login Fail... 아이디가 일치하지 않습니다");
+				return false;
+			}
+			if(!pw.equals(dbDto.getPw())) {
+				System.out.println("[ERROR] Login Fail... 패스워드가 일치하지 않습니다");
+				req.setAttribute("msg", "[ERROR] Login Fail... 패스워드가 일치하지 않습니다");
+				return false;
+			}
+			System.out.println("login func's dbDto" + dbDto);
+			HttpSession session = req.getSession(true);
+			System.out.println("login func's session : " + session);
+			session.setAttribute("ID", id);
+			session.setAttribute("ROLE", dbDto.getRole());
+			session.setMaxInactiveInterval(60*30);
+			return true;
 		}
 
-		if (!pw.equals(dto.getPw())) {
-			System.out.println("비밀번호 안됨");
-			req.setAttribute("msg", "[ERROR] Login Fail... 패스워드가 일치하지 않습니다");
-			return false;
-		}
-		
-		HttpSession session = req.getSession();
-		session.setAttribute("ID", id);
-		session.setAttribute("ROLE", dto.getRole());
-		
-		return true;
-	}
 
 //	로그아웃
 	@Override

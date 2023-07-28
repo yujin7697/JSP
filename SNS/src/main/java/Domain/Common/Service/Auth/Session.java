@@ -1,17 +1,14 @@
 package Domain.Common.Service.Auth;
 
 public class Session{
-	private String s_id;	//¼¼¼ÇID
-	private String id;		//À¯ÀúID
-	private String role;	//À¯Àú¿ªÇÒ(»ç¼­orÈ¸¿ø)
-	//¸ðµç ÀÎÀÚ»ý¼ºÀÚ
-	//±âº» »ý¼ºÀÚ
+	private String s_id;	//ï¿½ï¿½ï¿½ï¿½ID
+	private String id;		//ï¿½ï¿½ï¿½ï¿½ID
+	private String role;	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ç¼­orÈ¸ï¿½ï¿½)
+	//ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú»ï¿½ï¿½ï¿½ï¿½ï¿½
+	//ï¿½âº» ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	//Getter and Setter
 	//toString
 	public Session() {}
-	public String getS_id() {
-		return s_id;
-	}
 	public Session(String s_id, String id, String role) {
 		super();
 		this.s_id = s_id;
@@ -21,6 +18,9 @@ public class Session{
 	@Override
 	public String toString() {
 		return "Session [s_id=" + s_id + ", id=" + id + ", role=" + role + "]";
+	}
+	public String getS_id() {
+		return s_id;
 	}
 	public void setS_id(String s_id) {
 		this.s_id = s_id;

@@ -6,16 +6,17 @@ import Domain.Common.Dto.MemberDto;
 
 public interface MemberDao {
 
-	//id °ÔÅÍ
+	//id ï¿½ï¿½ï¿½ï¿½
 	String getId();
 
-	//	È¸¿ø id/pw ÀúÀå
+	//	È¸ï¿½ï¿½ id/pw ï¿½ï¿½ï¿½ï¿½
 	int insert(MemberDto dto) throws Exception;
 
-	// 	È¸¿ø id/pw Á¶È¸
+	MemberDto select(String id) throws Exception;
+	// 	È¸ï¿½ï¿½ id/pw ï¿½ï¿½È¸
 	List<MemberDto> select(String id, String pw) throws Exception;
 
-	//	È¸¿ø id/pw »èÁ¦
+	//	È¸ï¿½ï¿½ id/pw ï¿½ï¿½ï¿½ï¿½
 	int delete(String id) throws Exception;
 
 }

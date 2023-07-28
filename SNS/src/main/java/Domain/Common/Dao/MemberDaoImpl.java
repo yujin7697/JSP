@@ -82,4 +82,10 @@ public class MemberDaoImpl extends ConnectionPool implements MemberDao{
 		return result;
 		
 	}
+
+	@Override
+	public MemberDto select(String id) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
