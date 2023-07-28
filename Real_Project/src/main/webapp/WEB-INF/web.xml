@@ -11,7 +11,7 @@
 		<welcome-file>default.html</welcome-file>
 		<welcome-file>default.htm</welcome-file>
 		<welcome-file>default.jsp</welcome-file>
-		<welcome-file>/WEB-INF/view/join.jsp</welcome-file>
+		<welcome-file>join.jsp</welcome-file>
 	</welcome-file-list>
 
 

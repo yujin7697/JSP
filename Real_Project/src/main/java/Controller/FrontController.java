@@ -19,6 +19,7 @@ import Controller.member.MemberDeleteController;
 import Controller.member.MemberPageController;
 import Controller.member.MemberSearchController;
 import Controller.member.MemberUpdateController;
+import Controller.member.auth.JoinController;
 import Controller.member.auth.LoginController;
 import Controller.member.auth.LogoutController;
 
@@ -34,34 +35,30 @@ public class FrontController extends HttpServlet {
 		
 		String projectPath=config.getServletContext().getContextPath(); // /JAVA_TO_SERVLET/
 		
-		//board
-		map.put(projectPath+"/board/search.do", new BoardSearchController());
-		map.put(projectPath+"/board/add.do", new BoardAddController());
-		map.put(projectPath+"/board/update.do", new BoardUpdateController());
-		map.put(projectPath+"/board/delete.do", new BoardDeleteController());
-		
+		 // Board
+        map.put(projectPath + "/board/search.do", new BoardSearchController());
+        map.put(projectPath + "/board/add.do", new BoardAddController());
+        map.put(projectPath + "/board/update.do", new BoardUpdateController());
+        map.put(projectPath + "/board/delete.do", new BoardDeleteController());
 
-		
-//		//lendMsg
-//		map.put(projectPath+"/lend/messageRemove.do", new LendMessageRemoveController());
-		
-		
-		//member
-		map.put(projectPath+"/member/search.do", new MemberSearchController());
-		map.put(projectPath+"/member/add.do", new MemberAddController());
-		map.put(projectPath+"/member/update.do", new MemberUpdateController());
-		map.put(projectPath+"/member/delete.do", new MemberDeleteController());		
-		
-		//member.auth
-		map.put(projectPath+"/login.do", new LoginController());		
-		map.put(projectPath+"/logout.do", new LogoutController());
-		//mypage
-		map.put(projectPath+"/mypage.do", new MemberPageController());
-		
-		//main
-		map.put(projectPath+"/main.do",new MainController());
+        // Member
+        map.put(projectPath + "/member/search.do", new MemberSearchController());
+        map.put(projectPath + "/member/add.do", new MemberAddController());
+        map.put(projectPath + "/member/update.do", new MemberUpdateController());
+        map.put(projectPath + "/member/delete.do", new MemberDeleteController());
 
-		
+        // Member.auth
+        map.put(projectPath + "/login.do", new LoginController());
+        map.put(projectPath + "/logout.do", new LogoutController());
+
+        // Mypage
+        map.put(projectPath + "/mypage.do", new MemberPageController());
+
+        // Main
+        map.put(projectPath + "/main.do", new MainController());
+        
+        //Join
+        map.put(projectPath + "/register.do", new JoinController());
 		
 
 	}
