@@ -37,7 +37,7 @@ public class FrontController extends HttpServlet {
 		
 		 // Board
         map.put(projectPath + "/board/search.do", new BoardSearchController());
-        map.put(projectPath + "/board/add.do", new BoardAddController());
+        map.put(projectPath + "/add.do", new BoardAddController());
         map.put(projectPath + "/board/update.do", new BoardUpdateController());
         map.put(projectPath + "/board/delete.do", new BoardDeleteController());
 
