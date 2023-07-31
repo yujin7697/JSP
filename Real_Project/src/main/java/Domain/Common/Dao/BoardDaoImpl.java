@@ -24,11 +24,10 @@ public class BoardDaoImpl extends ConnectionPool implements BoardDao {
 //	글 작성
 	@Override
 	public int insert(BoardDto dto) throws Exception {
-		pstmt = conn.prepareStatement("insert into tbl_board values (null,?,?,?,now(),null)");
+		pstmt = conn.prepareStatement("insert into tbl_board values (null,?,?,now(),null)");
 
 		pstmt.setString(1, dto.getId());
-		pstmt.setString(2, dto.getTitle());
-		pstmt.setString(3, dto.getContents());
+		pstmt.setString(2, dto.getContents());
 
 		return pstmt.executeUpdate();
 	}
@@ -45,10 +44,10 @@ public class BoardDaoImpl extends ConnectionPool implements BoardDao {
 				dto = new BoardDto();
 				dto.setNumber(rs.getInt("number"));
 				dto.setId(rs.getString("id"));
-				dto.setTitle(rs.getString("title"));
 				dto.setContents(rs.getString("contents"));
 				dto.setDate(rs.getString("date"));
 				dto.setHits(rs.getInt("hits"));
+				dto.setLike(rs.getInt("like"));
 				list.add(dto);
 			}
 		}
@@ -68,9 +67,9 @@ public class BoardDaoImpl extends ConnectionPool implements BoardDao {
 			dto = new BoardDto();
 			dto.setNumber(rs.getInt("number"));
 			dto.setId(rs.getString("id"));
-			dto.setTitle(rs.getString("title"));
 			dto.setDate(rs.getString("date"));
 			dto.setHits(rs.getInt("hits"));
+			dto.setLike(rs.getInt("like"));
 			rs.close();
 		}
 		pstmt.close();
@@ -90,9 +89,9 @@ public class BoardDaoImpl extends ConnectionPool implements BoardDao {
 			dto = new BoardDto();
 			dto.setNumber(rs.getInt("number"));
 			dto.setId(rs.getString("id"));
-			dto.setTitle(rs.getString("title"));
 			dto.setDate(rs.getString("date"));
 			dto.setHits(rs.getInt("hits"));
+			dto.setLike(rs.getInt("like"));
 			rs.close();
 		}
 		pstmt.close();
@@ -111,9 +110,9 @@ public class BoardDaoImpl extends ConnectionPool implements BoardDao {
 			dto = new BoardDto();
 			dto.setNumber(rs.getInt("number"));
 			dto.setId(rs.getString("id"));
-			dto.setTitle(rs.getString("title"));
 			dto.setDate(rs.getString("date"));
 			dto.setHits(rs.getInt("hits"));
+			dto.setLike(rs.getInt("like"));
 			rs.close();
 		}
 		pstmt.close();
@@ -133,9 +132,9 @@ public class BoardDaoImpl extends ConnectionPool implements BoardDao {
 			dto = new BoardDto();
 			dto.setNumber(rs.getInt("number"));
 			dto.setId(rs.getString("id"));
-			dto.setTitle(rs.getString("title"));
 			dto.setDate(rs.getString("date"));
 			dto.setHits(rs.getInt("hits"));
+			dto.setLike(rs.getInt("like"));
 			rs.close();
 		}
 		pstmt.close();
@@ -145,9 +144,8 @@ public class BoardDaoImpl extends ConnectionPool implements BoardDao {
 //	내가 쓴 글 수정
 	@Override
 	public int update(BoardDto dto) throws Exception {
-		pstmt = conn.prepareStatement("update tbl_board set title=?,contents=?");
-		pstmt.setString(3, dto.getTitle());
-		pstmt.setString(4, dto.getContents());
+		pstmt = conn.prepareStatement("update tbl_board set contents=?");
+		pstmt.setString(1, dto.getContents());
 
 		return pstmt.executeUpdate();
 	}

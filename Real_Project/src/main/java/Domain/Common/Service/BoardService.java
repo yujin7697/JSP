@@ -8,7 +8,7 @@ import Domain.Common.Dto.BoardDto;
 public interface BoardService {
 
 	// 글 모두 조회하기(비회원,회원,관리자 모두)
-	List<BoardDto> getAllBoard() throws Exception;
+	List<BoardDto> getAllBoard(String keyfield,String keyword,String criteria) throws Exception;
 
 	// 글 하나 조회
 	BoardDto getBoard(int number) throws Exception;
