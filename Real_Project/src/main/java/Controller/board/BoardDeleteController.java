@@ -4,12 +4,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Controller.SubController;
-import Domain.Common.Service.BoardkService;
+import Domain.Common.Service.BoardService;
 import Domain.Common.Service.BoardServiceImpl;
 
 public class BoardDeleteController implements SubController{
 
-	private BoardkService service= BoardServiceImpl.getInstance();
+	private BoardService service= BoardServiceImpl.getInstance();
 
 	
 	@Override

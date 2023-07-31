@@ -13,13 +13,8 @@ import Domain.Common.Dto.MemberDto;
 
 
 public class MemberServiceImpl implements MemberService {
-
-	
-	 
 	
 	private MemberDao dao;
-	
-	
 	
 	//싱글톤
 	private static MemberService instance;
