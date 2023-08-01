@@ -52,9 +52,9 @@ body {
 		<main>
 			<section>
 				<div class=show--block>
-					<form action="board/search.do" method="post">
-						<input type="text" name="keyword" placeholder="검색어를 입력하세요"> 
-						<button type="submit">검색</button>
+					<form action="board/mypage.do" method="post">
+						<input type="text" name="userid" placeholder="검색어를 입력하세요"> 
+						<button type="submit">수정</button>
 					</form>
 					<hr>
 					<div>

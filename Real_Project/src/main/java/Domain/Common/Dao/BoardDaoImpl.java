@@ -135,11 +135,13 @@ public class BoardDaoImpl extends ConnectionPool implements BoardDao {
 			dto = new BoardDto();
 			dto.setNumber(rs.getInt("number"));
 			dto.setId(rs.getString("id"));
+			dto.setContents(rs.getString("contents"));
 			dto.setDate(rs.getString("date"));
 			dto.setHits(rs.getInt("hits"));
 			dto.setLike(rs.getInt("like"));
-			rs.close();
+			list.add(dto);
 		}
+		rs.close();
 		pstmt.close();
 		return list;
 	}

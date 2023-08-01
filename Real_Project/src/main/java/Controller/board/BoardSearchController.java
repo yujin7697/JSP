@@ -40,7 +40,7 @@ public class BoardSearchController implements SubController {
 				req.setAttribute("searchMessage", "조회된 게시물이 없습니다.");
 			}
 			
-			req.getRequestDispatcher("/board/template.jsp").forward(req, resp);
+			req.getRequestDispatcher("/tmplate.jsp").forward(req, resp);
 		
 		} catch (Exception e) {
 			e.printStackTrace();

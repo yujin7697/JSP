@@ -116,9 +116,6 @@ public class BoardServiceImpl implements BoardService{
 		return false;
 	}
 
-
-
-
 //	@Override
 //	public List<CommentDto> Commentselect(CommentDto dto) throws Exception {
 //		// TODO Auto-generated method stub
