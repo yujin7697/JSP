@@ -34,7 +34,7 @@ public class BoardDaoImpl extends ConnectionPool implements BoardDao {
 
 //	전체글 조회
 	@Override
-	public List<BoardDto> select() throws Exception {
+	public List<BoardDto> getAllBoard() throws Exception {
 		List<BoardDto> list = new ArrayList();
 		BoardDto dto = null;
 		pstmt = conn.prepareStatement("select * from tbl_board");
@@ -78,23 +78,26 @@ public class BoardDaoImpl extends ConnectionPool implements BoardDao {
 
 //	id 나 title로 글 조회
 	@Override
-	public List<BoardDto> search_id(String id) throws Exception {
+	public List<BoardDto> search_id(String keyword) throws Exception {
+		System.out.println("boardSearchDaoImpl's search_id!");
 		List<BoardDto> list = new ArrayList();
 		BoardDto dto = null;
 		pstmt = conn.prepareStatement("select * from tbl_board where id = ?");
-		pstmt.setString(1, id);
+		pstmt.setString(1, keyword);
 		rs = pstmt.executeQuery();
 		if (rs != null) {
-			rs.next();
-			dto = new BoardDto();
-			dto.setNumber(rs.getInt("number"));
-			dto.setId(rs.getString("id"));
-			dto.setDate(rs.getString("date"));
-			dto.setHits(rs.getInt("hits"));
-			dto.setLike(rs.getInt("like"));
-			rs.close();
+			while (rs.next()) {
+				dto = new BoardDto();
+				dto.setNumber(rs.getInt("number"));
+				dto.setId(rs.getString("id"));
+				dto.setContents(rs.getString("contents"));
+				dto.setDate(rs.getString("date"));
+				dto.setHits(rs.getInt("hits"));
+				dto.setLike(rs.getInt("like"));
+				list.add(dto);
+			}
 		}
-		pstmt.close();
+		System.out.println(list);
 		return list;
 	}
 

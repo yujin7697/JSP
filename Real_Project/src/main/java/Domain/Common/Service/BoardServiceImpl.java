@@ -33,7 +33,7 @@ public class BoardServiceImpl implements BoardService{
 	// 글 모두 조회하기(비회원,회원,관리자 모두)
 	public List<BoardDto> getAllBoard() throws Exception {
 		System.out.println("BoardService's getAllBoard()");
-		return Bdao.select();
+		return Bdao.getAllBoard();
 	}
 
 	// 글 하나 조회
@@ -50,9 +50,9 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	// 글 id로 조회
-	public List<BoardDto> boardsearch_id(String id) throws Exception {
+	public List<BoardDto> boardsearch_id(String keyword) throws Exception {
 		System.out.println("BoardService's boardsearch()");
-		return Bdao.search_id(id);
+		return Bdao.search_id(keyword);
 	}
 
 	// 글 title로 조회
@@ -115,6 +115,8 @@ public class BoardServiceImpl implements BoardService{
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+
 
 
 //	@Override

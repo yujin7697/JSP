@@ -12,12 +12,13 @@ public class BoardDto {
 	public BoardDto() {}
 	
 //	모든 인자를 받는 생성자
-	public BoardDto(int number, String id, String contents, String date, int hits) {
+	public BoardDto(int number, String id, String contents, String date, int hits, int like) {
 		this.number = number;
 		this.id = id;
 		this.contents = contents;
 		this.date = date;
 		this.hits = hits;
+		this.like = like;
 	}
 
 	@Override
