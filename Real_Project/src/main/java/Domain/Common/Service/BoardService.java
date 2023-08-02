@@ -30,7 +30,7 @@ public interface BoardService {
 	boolean boardsearch_title(BoardDto dto) throws Exception;
 
 	//내가 쓴 글 조회
-	boolean boardsearch_mine(BoardDto dto) throws Exception;
+	List<BoardDto> boardsearch_mine(String id) throws Exception;
 
 //	//댓글 조회
 //	List<CommentDto> Commentselect(CommentDto dto) throws Exception;

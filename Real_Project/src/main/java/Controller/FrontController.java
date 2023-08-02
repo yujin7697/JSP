@@ -37,7 +37,7 @@ public class FrontController extends HttpServlet {
 		
 		 // Board
         map.put(projectPath + "/board/search.do", new BoardSearchController());
-        map.put(projectPath + "/add.do", new BoardAddController());
+        map.put(projectPath + "/board/add.do", new BoardAddController());
         map.put(projectPath + "/board/update.do", new BoardUpdateController());
         map.put(projectPath + "/board/delete.do", new BoardDeleteController());
 
@@ -52,7 +52,7 @@ public class FrontController extends HttpServlet {
         map.put(projectPath + "/logout.do", new LogoutController());
 
         // Mypage
-        map.put(projectPath + "/mypage.do", new MemberPageController());
+        map.put(projectPath + "/member/mypage.do", new MemberPageController());
 
         // Main
         map.put(projectPath + "/main.do", new MainController());

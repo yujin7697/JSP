@@ -46,14 +46,13 @@ body {
 
 	<div class="wrapper">
 		<header>
-			<div class="top--header">게시물 검색</div>
+			<div class="top--header">게시물 수정</div>
 			<nav></nav>
 		</header>
 		<main>
 			<section>
 				<div class=show--block>
 					<form action="board/mypage.do" method="post">
-						<input type="text" name="userid" placeholder="검색어를 입력하세요"> 
 						<button type="submit">수정</button>
 					</form>
 					<hr>
@@ -68,6 +67,7 @@ body {
 									<th>작성날짜</th>
 									<th>조회수</th>
 									<th>좋아요</th>
+									<th>수정</th>
 								</tr>
 								<c:forEach items="${searchResult}" var="board">
 									<tr>
@@ -77,6 +77,14 @@ body {
 										<td>${board.date}</td>
 										<td>${board.hits}</td>
 										<td>${board.like}</td>
+										<td>
+											<form action="board/edit.do" method="post">
+												<!-- 수정 페이지로 이동하는 폼 추가 -->
+												<input type="hidden" name="boardNumber"
+													value="${board.number}" />
+												<button type="submit">수정</button>
+											</form>
+										</td>
 									</tr>
 								</c:forEach>
 							</table>

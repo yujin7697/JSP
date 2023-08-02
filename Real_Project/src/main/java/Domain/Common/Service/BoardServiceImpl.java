@@ -1,13 +1,11 @@
 package Domain.Common.Service;
 
 import java.util.List;
-import java.util.Map;
 
 import Domain.Common.Dao.BoardDao;
 import Domain.Common.Dao.BoardDaoImpl;
 //import Domain.Common.Dao.CommentDao;
 import Domain.Common.Dto.BoardDto;
-import Domain.Common.Dto.MemberDto;
 
 public class BoardServiceImpl implements BoardService{
 
@@ -110,11 +108,6 @@ public class BoardServiceImpl implements BoardService{
 		return false;
 	}
 
-	@Override
-	public boolean boardsearch_mine(BoardDto dto) throws Exception {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 //	@Override
 //	public List<CommentDto> Commentselect(CommentDto dto) throws Exception {
