@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -41,6 +41,12 @@ table>tr>th {
 .scroll::-webkit-scrollbar {
 	display: none;
 }
+
+.test {
+	width: 900px;
+	height: 1000px;
+	border: 1px solid;
+}
 </style>
 </head>
 <body class="scroll">
@@ -48,7 +54,7 @@ table>tr>th {
 	<h1>
 		<a href="/WeSee/">WeSee</a>
 	</h1>
-	
+
 	<div>
 		<button style="border: none; background-color: white;">
 			<img src="Resource/Bell.png">
@@ -56,12 +62,21 @@ table>tr>th {
 		<button style="border: none; background-color: white;">
 			<img src="Resource/Search.png">
 		</button>
-		<button style="border: none; background-color: white;">
-			<img src="Resource/Pencil.png">
-		</button>
-		<button style="border: none; background-color: white;">
-			<img src="Resource/Message.png">
-		</button>
+
+		<!-- write로 -->
+		<a href=<c:url value="/add.do"/>>
+			<button style="border: none; background-color: white;">
+				<img src="Resource/Pencil.png">
+			</button>
+		</a>
+
+		<!-- sendMessage로 -->
+		<a href=<c:url value="/message.do"/>>
+			<button style="border: none; background-color: white;">
+				<img src="Resource/Message.png">
+			</button>
+		</a>
+
 		<button style="border: none; background-color: white;">
 			<img src="Resource/Person.png">
 		</button>
@@ -189,7 +204,7 @@ table>tr>th {
 			</tr>
 			<tr class='scroll'
 				style="background-color: white; height: 90px; overflow: auto;">
-			
+
 				<td style="display: flex;">
 					<div style="position: relative;">mango456</div>
 					<div class='scroll'
@@ -214,7 +229,7 @@ table>tr>th {
 					<div style="position: relative; margin-left: 10px;">02.02.01
 						15:30</div> <!-- nowdate(date)  -->
 				</td>
-				
+
 			</tr>
 
 			<tr style="background-color: white;">
@@ -227,11 +242,35 @@ table>tr>th {
 			</tr>
 		</table>
 	</div>
+	
+	<h1>게시물 목록</h1>
+	<p>Welcome, ${userId}!</p>
+    <c:if test="${empty boardList}">
+		<p class="no-data">데이터가 없습니다.</p>
+	</c:if>
 
-
-
-
-
+	<c:if test="${not empty boardList}">
+		<table border="1">
+			<tr>
+				<th>글 번호</th>
+				<th>작성자</th>
+				 <th>글 내용</th> 
+				<th>작성날짜</th>
+				<th>조회수</th>
+				<th>좋아요</th>
+			</tr>
+			<c:forEach var="board" items="${boardList}">
+				<tr>
+					<td>${board.number}</td>
+					<td>${board.id}</td>
+				 	<td>${board.content}</td> 
+					<td>${board.date}</td>
+					<td>${board.hits}</td>
+					<td>${board.like}</td>
+				</tr>
+			</c:forEach>
+		</table>
+	</c:if>
 
 </body>
 </html>

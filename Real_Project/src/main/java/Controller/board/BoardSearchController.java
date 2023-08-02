@@ -41,7 +41,8 @@ public class BoardSearchController implements SubController {
 			}
 			
 			req.getRequestDispatcher("/tmplate.jsp").forward(req, resp);
-		
+			
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

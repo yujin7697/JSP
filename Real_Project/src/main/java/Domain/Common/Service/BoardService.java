@@ -32,6 +32,8 @@ public interface BoardService {
 	//내가 쓴 글 조회
 	List<BoardDto> boardsearch_mine(String id) throws Exception;
 
+
+
 //	//댓글 조회
 //	List<CommentDto> Commentselect(CommentDto dto) throws Exception;
 //
