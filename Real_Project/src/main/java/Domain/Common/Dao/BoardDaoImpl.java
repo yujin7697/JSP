@@ -125,13 +125,13 @@ public class BoardDaoImpl extends ConnectionPool implements BoardDao {
 //	내가 쓴 글 조회
 	@Override
 	public List<BoardDto> search_mine(String id) throws Exception {
+		System.out.println("id:" +id);
 		List<BoardDto> list = new ArrayList();
 		BoardDto dto = null;
 		pstmt = conn.prepareStatement("select * from tbl_board where id = ?");
 		pstmt.setString(1, id);
 		rs = pstmt.executeQuery();
-		if (rs != null) {
-			rs.next();
+		if (rs != null&&rs.next()) {
 			dto = new BoardDto();
 			dto.setNumber(rs.getInt("number"));
 			dto.setId(rs.getString("id"));
@@ -140,8 +140,9 @@ public class BoardDaoImpl extends ConnectionPool implements BoardDao {
 			dto.setHits(rs.getInt("hits"));
 			dto.setLike(rs.getInt("like"));
 			list.add(dto);
+			rs.close();
 		}
-		rs.close();
+		System.out.println(list);
 		pstmt.close();
 		return list;
 	}

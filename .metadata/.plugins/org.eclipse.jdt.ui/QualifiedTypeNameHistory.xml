@@ -8,11 +8,11 @@
     <fullyQualifiedTypeName name="Domain.Common.Dao.LendMessageDaoImpl"/>
     <fullyQualifiedTypeName name="Domain.Common.Service.LendServiceImpl"/>
     <fullyQualifiedTypeName name="Controller.SubController"/>
-    <fullyQualifiedTypeName name="Domain.Common.Service.BoardServiceImpl"/>
     <fullyQualifiedTypeName name="Domain.Common.Service.BoardService"/>
     <fullyQualifiedTypeName name="Domain.Common.Service.MemberService"/>
     <fullyQualifiedTypeName name="Domain.Common.Dao.ConnectionPool"/>
     <fullyQualifiedTypeName name="Domain.Common.Service.MemberServiceImpl"/>
     <fullyQualifiedTypeName name="Domain.Common.Service.Auth.Session"/>
     <fullyQualifiedTypeName name="Domain.Common.Dao.BoardDaoImpl"/>
+    <fullyQualifiedTypeName name="Domain.Common.Service.BoardServiceImpl"/>
 </qualifiedTypeNameHistroy>

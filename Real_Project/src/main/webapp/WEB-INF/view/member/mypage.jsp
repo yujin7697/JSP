@@ -52,13 +52,19 @@ body {
 		<main>
 			<section>
 				<div class=show--block>
-					<form action="board/mypage.do" method="post">
+					<!-- 로그인한 회원의 아이디 출력 -->
+					<h2>회원 정보</h2>
+					<p>회원 아이디: ${memberId}</p>
+
+					<!-- 로그인한 회원이 작성한 게시물 표시 -->
+					<h2>작성한 게시물 목록</h2>
+					<form action="member/mypage.do" method="post">
 						<button type="submit">수정</button>
 					</form>
 					<hr>
 					<div>
 						<h2>검색 결과</h2>
-						<c:if test="${not empty searchResult}">
+						<c:if test="${not empty posts}">
 							<table border="1">
 								<tr>
 									<th>글 번호</th>
@@ -69,7 +75,7 @@ body {
 									<th>좋아요</th>
 									<th>수정</th>
 								</tr>
-								<c:forEach items="${searchResult}" var="board">
+								<c:forEach items="${posts}" var="board">
 									<tr>
 										<td>${board.number}</td>
 										<td>${board.id}</td>
@@ -89,8 +95,8 @@ body {
 								</c:forEach>
 							</table>
 						</c:if>
-						<c:if test="${not empty searchMessage}">
-							<p>${searchMessage}</p>
+						<c:if test="${not empty posts}">
+							<p>작성한 게시물이 없습니다.</p>
 						</c:if>
 					</div>
 					<div></div>

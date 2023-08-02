@@ -23,11 +23,13 @@ public class MemberPageController implements SubController {
 			System.out.println("session: " + role);
 			if (role.equals("ROLE_USER")) {
 				req.getRequestDispatcher("/WEB-INF/view/member/user.jsp").forward(req, resp);
+				return ;
 			} else if (role.equals("MEMBER")) {
-				req.getRequestDispatcher("/WEB-INF/view/member/mypage.jsp").forward(req, resp);
-				// 회원 아이디 가져오기
-				String memberId = (String) session.getAttribute("MEMBER_ID");
 
+				// 회원 아이디 가져오기 
+				// 이게 문제다 유진아
+				String memberId = (String) session.getAttribute("ID");
+				System.out.println("memberid : " + memberId);
 				// 회원의 작성 게시물 데이터 가져오기
 				List<BoardDto> posts = service.boardsearch_mine(memberId);
 				System.out.println("posts: " +posts);
@@ -39,6 +41,7 @@ public class MemberPageController implements SubController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return ;
 
 	}
 
