@@ -1,6 +1,6 @@
 package Controller;
 
-import java.util.Map;
+import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -8,6 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 public interface SubController {
 
 
-	void execute(HttpServletRequest req,HttpServletResponse resp);
+	void execute(HttpServletRequest req,HttpServletResponse resp) throws IOException;
 
 }

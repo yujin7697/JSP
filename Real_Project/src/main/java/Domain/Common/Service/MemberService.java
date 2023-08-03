@@ -8,6 +8,7 @@ import Domain.Common.Dto.MemberDto;
 
 public interface MemberService {
 
+
 	//회원 가입하기
 	boolean memberJoin(MemberDto dto) throws Exception;
 
@@ -28,6 +29,8 @@ public interface MemberService {
 
 	//로그인
 	boolean login(HttpServletRequest req) throws Exception;
+
+	String getRole(String id);
 
 
 }

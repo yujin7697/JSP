@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>마이 페이지</title>
+<title>마이페이지</title>
 <style>
 body {
 	width: 1024px;
@@ -65,64 +65,55 @@ th {
 	margin-right: 5px;
 }
 </style>
+</head>
 <script>
-	function toggleEditForm(number) {
-		var row = document.getElementById('row-' + number);
-		var contentCell = row.getElementsByClassName('content-cell')[0];
-		var editForm = row.getElementsByClassName('edit-form')[0];
-		var contentInput = editForm.getElementsByTagName('input')[0];
+	function editRow(boardNumber, contents) {
+		var row = document.getElementById('row-' + boardNumber);
+		var cells = row.getElementsByTagName('td');
+
+		for (var i = 2; i < cells.length - 4; i++) {
+			var cellValue = cells[i].innerText;
+			cells[i].innerHTML = '<input type="text" name="contents-' + boardNumber + '" value="' + cellValue + '" />';
+		}
+
 		var editButton = row.getElementsByClassName('edit-button')[0];
 		var saveButton = row.getElementsByClassName('save-button')[0];
-
-		if (contentCell.style.display === 'none') {
-			contentCell.style.display = 'table-cell';
-			editForm.style.display = 'none';
-			editButton.style.display = 'block';
-			saveButton.style.display = 'none';
-		} else {
-			contentCell.style.display = 'none';
-			editForm.style.display = 'table-cell';
-			contentInput.value = contentCell.innerText.trim();
-			editButton.style.display = 'none';
-			saveButton.style.display = 'block';
-		}
+		editButton.style.display = 'none';
+		saveButton.style.display = 'block';
 	}
 
-	function saveContent(number) {
-		var row = document.getElementById('row-' + number);
-		var contentCell = row.getElementsByClassName('content-cell')[0];
-		var editForm = row.getElementsByClassName('edit-form')[0];
-		var contentInput = editForm.getElementsByTagName('input')[0];
-		var editButton = row.getElementsByClassName('edit-button')[0];
-		var saveButton = row.getElementsByClassName('save-button')[0];
+	function saveRow(boardNumber) {
+		var row = document.getElementById('row-' + boardNumber);
+		var inputs = row.getElementsByTagName('input');
 
-		var newContent = contentInput.value;
+		var formData = new FormData();
+		formData.append('boardNumber', boardNumber);
+		for (var i = 0; i < inputs.length; i++) {
+			formData.append(inputs[i].name, inputs[i].value);
+		}
 
-		// XMLHttpRequest 객체 생성
-        var xhr = new XMLHttpRequest();
-
-        // POST 요청 보내기
-        xhr.open("POST", "mypage.do", false); // 동기적 요청
-        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
-        // 서버로 보낼 데이터 설정
-        var data = "number=" + encodeURIComponent(number) +
-                   "&contents=" + encodeURIComponent(newContent);
-
-        // 요청 전송
-        xhr.send(data);
-
-        // 요청이 완료되면 응답 데이터를 확인
-        if (xhr.readyState === 4) {
-            if (xhr.status === 200) {
-                // 성공적으로 업데이트된 경우
-                contentCell.innerText = newContent;
-                toggleEditForm(boardNumber);
-            } else {
-                // 업데이트에 실패한 경우에 대한 처리 (예: 에러 메시지 출력)
-                alert("게시물 수정에 실패했습니다.");
-            }
-        }
+		var xhr = new XMLHttpRequest();
+		xhr.open('POST', 'mypage.do', true);
+		xhr.onload = function() {
+			if (xhr.status === 200) {
+				// 서버에서 처리가 성공적으로 완료됐을 때 실행할 로직
+				console.log(xhr.responseText);
+				var response = JSON.parse(xhr.responseText);
+				if (response.success) {
+					for (var i = 2; i < inputs.length; i++) {
+						var cellValue = inputs[i].value;
+						cells[i].innerHTML = cellValue;
+					}
+					var editButton = row.getElementsByClassName('edit-button')[0];
+					var saveButton = row.getElementsByClassName('save-button')[0];
+					editButton.style.display = 'block';
+					saveButton.style.display = 'none';
+				} else {
+					alert('수정에 실패했습니다.');
+				}
+			}
+		};
+		xhr.send(formData);
 	}
 </script>
 </head>
@@ -136,39 +127,65 @@ th {
 		<p class="no-data">데이터가 없습니다.</p>
 	</c:if>
 
-	<c:if test="${not empty posts}">
-		<table border="1">
-			<tr>
-				<th>글 번호</th>
-				<th>작성자</th>
-				<th>글 내용</th>
-				<th>작성날짜</th>
-				<th>조회수</th>
-				<th>좋아요</th>
-				<th>수정</th>
-			</tr>
-			<c:forEach var="board" items="${posts}">
-				<tr id="row-${board.number}">
-					<td>${board.number}</td>
-					<td>${board.id}</td>
-					<td class="content-cell">${board.contents}</td>
-					<td>${board.date}</td>
-					<td>${board.hits}</td>
-					<td>${board.like}</td>
-					<td>
-						<button class="edit-button"
-							onclick="toggleEditForm('${board.number}')">수정</button>
-						<button class="save-button" style="display: none;"
-							onclick="saveContent('${board.number}')">저장</button>
-						<div class="edit-form" style="display: none;">
-							<input type="text" id="content-${board.number}">
-							<button class="cancel-button"
-								onclick="toggleEditForm('${board.number}')">취소</button>
-						</div>
-					</td>
-				</tr>
-			</c:forEach>
-		</table>
-	</c:if>
+	<div class="wrapper">
+		<header>
+			<!-- 이전 header 영역... -->
+		</header>
+		<main>
+			<section>
+				<div class="show--block">
+					<!-- 이전 로그인한 회원 정보 영역... -->
+					<h2>작성한 게시물 목록</h2>
+					<div>
+						<c:if test="${not empty posts}">
+							<table border="1">
+								<tr>
+									<th>글 번호</th>
+									<th>작성자</th>
+									<th>내용</th>
+									<th>작성날짜</th>
+									<th>조회수</th>
+									<th>좋아요</th>
+									<th>수정</th>
+									<th>삭제</th>
+								</tr>
+								<c:forEach items="${posts}" var="board">
+									<tr id="row-${board.number}">
+										<td>${board.number}</td>
+										<td>${board.id}</td>
+										<td>${board.contents}</td>
+										<td>${board.date}</td>
+										<td>${board.hits}</td>
+										<td>${board.like}</td>
+										<td>
+											<button class="edit-button"
+												onclick="editRow('${board.number}', '${board.contents}')">수정</button>
+											<button class="save-button" style="display: none;"
+												onclick="saveRow('${board.number}')">저장</button>
+										</td>
+										<td>
+
+											<form action="board/delete.do" method="post">
+												<!-- 삭제 기능을 수행하는 폼 추가 -->
+												<input type="hidden" name="boardNumber"
+													value="${board.number}" />
+												<button type="submit">삭제</button>
+											
+											</form>
+										</td>
+									</tr>
+								</c:forEach>
+							</table>
+						</c:if>
+						<c:if test="${empty posts}">
+							<!-- 작성한 게시물이 없을 때의 처리... -->
+						</c:if>
+					</div>
+				</div>
+			</section>
+			<!-- 이전 section 영역... -->
+		</main>
+		<footer></footer>
+	</div>
 </body>
 </html>

@@ -1,15 +1,19 @@
 package Domain.Common.Service;
 
 import java.util.List;
+import java.util.Map;
 
 import Domain.Common.Dao.BoardDao;
 import Domain.Common.Dao.BoardDaoImpl;
+import Domain.Common.Dao.MemberDao;
 //import Domain.Common.Dao.CommentDao;
 import Domain.Common.Dto.BoardDto;
+import Domain.Common.Service.Auth.Session;
 
 public class BoardServiceImpl implements BoardService{
 
 	private BoardDao Bdao;
+	private MemberDao Mdao;
 //	private CommentDao Cdao;
 
 	// 싱글톤
@@ -87,18 +91,19 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	// 글 삭제하기
-	// 이거 선생님말듣고 수정 0704 박영민 13:17
 	public boolean boardDelete(String id) throws Exception {
 		System.out.println("BoardService's boardDelete()");
-//		String role = memberService.getRole(id);
+		String role = memberService.getRole(id);
+		System.out.println("getRole : " + role);
+		
 //		Session session = (Session) memberService.sessionMap.get(id);
 //		Map<String, Object> results = memberService.login("id", "pw");
-//
-//		if (session.getId().equals(id) || role == "MASTER") {
-//			int result = Bdao.delete(id);
-//			if (result > 0)
-//				return true;
-//		}
+
+		if ("MEMBER".equals(role)) {
+			int result = Bdao.delete(id);
+			if (result > 0)
+				return true;
+		}
 		return false;
 	}
 
