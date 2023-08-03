@@ -32,7 +32,7 @@ public class BoardUpdateController implements SubController {
 
             if (isUpdated) {
                 // 수정이 성공하면 마이페이지로 리다이렉트
-                resp.sendRedirect(req.getContextPath() + "/member/mypage.do");
+                resp.sendRedirect(req.getContextPath() + "/mypage.do");
             } else {
                 // 수정 실패 시 에러 페이지 또는 다른 처리 방법을 선택하여 구현
                 // 예: 에러 메시지를 출력하거나 다시 수정 폼으로 이동

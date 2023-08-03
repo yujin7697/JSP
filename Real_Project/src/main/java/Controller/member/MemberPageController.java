@@ -36,7 +36,6 @@ public class MemberPageController implements SubController {
 
 				// 게시물 데이터를 request에 저장하여 JSP로 전달
 				req.setAttribute("posts", posts);
-				req.setAttribute("memberId", memberId);
 				req.getRequestDispatcher("/WEB-INF/view/member/mypage.jsp").forward(req, resp);
 			}
 		} catch (Exception e) {
